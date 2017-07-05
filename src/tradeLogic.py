@@ -1,5 +1,6 @@
 import requests
 import publicApiMethods
+import privateApiMethods
 
 apiKey = ''
 secret = ''
@@ -39,6 +40,8 @@ if __name__=="__main__":
     print "24 hour chart data: \n" + publicApiMethods.getChartData() + "\n"
 
     print "Order Book: \n" + publicApiMethods.getOrderBook() + "\n"
+
+    print privateApiMethods.buy()
 
 #
 # def getOrderBook():
