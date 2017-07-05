@@ -16,50 +16,21 @@ secret = ''
     # print response.status_code
     # print response.json()
 
-# if __name__ == "__main__":
-#     main()
-#     get24hVolume()
-
-#public gets
-# def selectUrlCall():
-#
-#
-# def get24hVolume():
-#     response = requests.get("https://poloniex.com/public?command=returnOrderBook&currencyPair=USDT_ETH", auth=(apiKey, secret))
-#     return response._content
 
 
 
 if __name__=="__main__":
-    #main()
 
     print "24 hour Volume: \n" + publicApiMethods.get24hVolume() + "\n"
 
-    print "Trade History: \n" + publicApiMethods.getTradeHistory() + "\n"
+    print "Trade History: \n" + publicApiMethods.getTradeHistory("USDT_ETH") + "\n"
 
-    print "24 hour chart data: \n" + publicApiMethods.getChartData() + "\n"
+    print "24 hour chart data: \n" + publicApiMethods.getChartData("USDT_ETH", "1498132800", "1498219200", "1800") + "\n"
 
     print "Order Book: \n" + publicApiMethods.getOrderBook() + "\n"
 
     print privateApiMethods.buy()
 
-#
-# def getOrderBook():
-#
-#
-# def getTradeHistory():
-#
-#
-# def getChartData():
-#
-#
-# #Private api calls
-# def buy():
-#
-#
-# def sell():
-#
-#
-# def
+
 
 
