@@ -29,9 +29,11 @@ class poloniex:
 
     def api_query(self, command, req={}):
 
-        if (command == "returnTicker" or command == "return24Volume"):
+        if (command == "returnTicker" or command == "return24hVolume"):
 
             response = urllib2.urlopen(urllib2.Request('https://poloniex.com/public?command=' + command))
+            # with open('tickerData.txt', 'w') as outfile:
+            #     json.dumps(response, outfile)
             return json.loads(response.read())
 
         elif (command == "returnOrderBook"):
@@ -66,7 +68,7 @@ class poloniex:
         return self.api_query("returnTicker")
 
     def return24Volume(self):
-        return self.api_query("return24Volume")
+        return self.api_query("return24hVolume")
 
     def returnOrderBook(self, currencyPair):
         return self.api_query("returnOrderBook", {'currencyPair': currencyPair})

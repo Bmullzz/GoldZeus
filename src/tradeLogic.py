@@ -2,9 +2,11 @@
 import publicApiMethods
 import privateApiMethods
 import poloniexWrapper
+import apiKeys
+import json
 
-
-
+APIKey = apiKeys.APIKey
+Secret = apiKeys.Secret
 
 rapper = poloniexWrapper.poloniex(APIKey, Secret)
 
@@ -12,12 +14,15 @@ rapper = poloniexWrapper.poloniex(APIKey, Secret)
 if __name__=="__main__":
 
 
-
+    # with open('tickerData.txt', 'w') as outfile:
+    #     json.dumps(rapper.returnTicker(), outfile)
+    print "Ticker: \n"
     print rapper.returnTicker()
-        # print(keys)
-        # print(values)
+    print "\n"
 
-
+    print "24 hr Volume: \n"
+    print rapper.return24Volume()
+    print "\n"
 
     print "Trade History: \n" + publicApiMethods.getTradeHistory("USDT_ETH") + "\n"
 
