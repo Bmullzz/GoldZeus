@@ -38,16 +38,16 @@ class poloniex:
 
         elif (command == "returnOrderBook"):
 
-            ret = urllib2.urlopen(urllib2.Request(
+            response = urllib2.urlopen(urllib2.Request(
                 'https://poloniex.com/public?command=' + command + '&currencyPair=' + str(req['currencyPair'])))
-            return json.loads(ret.read())
+            return json.loads(response.read())
 
         elif (command == "returnMarketTradeHistory"):
 
-            ret = urllib2.urlopen(urllib2.Request(
+            response = urllib2.urlopen(urllib2.Request(
                 'https://poloniex.com/public?command=' + "returnTradeHistory" + '&currencyPair=' + str(
                     req['currencyPair'])))
-            return json.loads(ret.read())
+            return json.loads(response.read())
 
         else:
             req['command'] = command
@@ -60,27 +60,33 @@ class poloniex:
                 'Key': self.APIKey
             }
 
-            ret = urllib2.urlopen(urllib2.Request('https://poloniex.com/tradingApi', post_data, headers))
-            jsonRet = json.loads(ret.read())
-            return self.post_process(jsonRet)
+            response = urllib2.urlopen(urllib2.Request('https://poloniex.com/tradingApi', post_data, headers))
+            jsonResponse = json.loads(response.read())
+            return self.post_process(jsonResponse)
+
 
     def returnTicker(self):
         return self.api_query("returnTicker")
 
+
     def return24Volume(self):
         return self.api_query("return24hVolume")
+
 
     def returnOrderBook(self, currencyPair):
         return self.api_query("returnOrderBook", {'currencyPair': currencyPair})
 
+
     def returnMarketTradeHistory(self, currencyPair):
         return self.api_query("returnMarketTradeHistory", {'currencyPair': currencyPair})
+
 
     # Returns all of your balances.
     # Outputs:
     # {"BTC":"0.59098578","LTC":"3.31117268", ... }
     def returnBalances(self):
         return self.api_query('returnBalances')
+
 
     # Returns your open orders for a given market, specified by the "currencyPair" POST parameter, e.g. "BTC_XCP"
     # Inputs:
@@ -94,6 +100,7 @@ class poloniex:
     def returnOpenOrders(self, currencyPair):
         return self.api_query('returnOpenOrders', {"currencyPair": currencyPair})
 
+
     # Returns your trade history for a given market, specified by the "currencyPair" POST parameter
     # Inputs:
     # currencyPair  The currency pair e.g. "BTC_XCP"
@@ -106,6 +113,7 @@ class poloniex:
     def returnTradeHistory(self, currencyPair):
         return self.api_query('returnTradeHistory', {"currencyPair": currencyPair})
 
+
     # Places a buy order in a given market. Required POST parameters are "currencyPair", "rate", and "amount". If successful, the method will return the order number.
     # Inputs:
     # currencyPair  The curreny pair
@@ -115,6 +123,7 @@ class poloniex:
     # orderNumber   The order number
     def buy(self, currencyPair, rate, amount):
         return self.api_query('buy', {"currencyPair": currencyPair, "rate": rate, "amount": amount})
+
 
     # Places a sell order in a given market. Required POST parameters are "currencyPair", "rate", and "amount". If successful, the method will return the order number.
     # Inputs:
@@ -126,6 +135,7 @@ class poloniex:
     def sell(self, currencyPair, rate, amount):
         return self.api_query('sell', {"currencyPair": currencyPair, "rate": rate, "amount": amount})
 
+
     # Cancels an order you have placed in a given market. Required POST parameters are "currencyPair" and "orderNumber".
     # Inputs:
     # currencyPair  The curreny pair
@@ -134,6 +144,7 @@ class poloniex:
     # succes        1 or 0
     def cancel(self, currencyPair, orderNumber):
         return self.api_query('cancelOrder', {"currencyPair": currencyPair, "orderNumber": orderNumber})
+
 
     # Immediately places a withdrawal for a given currency, with no email confirmation. In order to use this method, the withdrawal privilege must be enabled for your API key. Required POST parameters are "currency", "amount", and "address". Sample output: {"response":"Withdrew 2398 NXT."}
     # Inputs:
