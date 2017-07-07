@@ -39,5 +39,5 @@ def getOrderBook(currencyPair):
     response = requests.get("https://poloniex.com/public?command=returnOrderBook&currencyPair=" + currencyPair)
     return response.content
 
-with open('24hVolumeData.txt', 'w') as outfile:
-    get24hVolume().dump(data, outfile)
+# with open('24hVolumeData.txt', 'w') as outfile:
+#     get24hVolume().dump(data, outfile)

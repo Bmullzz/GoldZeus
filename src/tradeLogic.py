@@ -1,25 +1,23 @@
-import requests
+
 import publicApiMethods
 import privateApiMethods
-import json
+import poloniexWrapper
 
 
-#def main():
-
-    # response = requests.get("https://poloniex.com/public?command=returnOrderBook", auth=(apiKey, secret))
-
-    #print (poloniex.returnOrderBook('BTC_ETH&depth=10'))
-    #print get24hVolume()
-    # print response._content
-    # print response.status_code
-    # print response.json()
 
 
+rapper = poloniexWrapper.poloniex(APIKey, Secret)
 
 
 if __name__=="__main__":
 
-    # print publicApiMethods.get24hVolume()
+
+
+    print rapper.returnTicker()
+        # print(keys)
+        # print(values)
+
+
 
     print "Trade History: \n" + publicApiMethods.getTradeHistory("USDT_ETH") + "\n"
 
