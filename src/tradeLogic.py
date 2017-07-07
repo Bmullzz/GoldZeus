@@ -28,7 +28,7 @@ if __name__=="__main__":
     # print rapper.returnOrderBook("USDT_ETH")
     # print "\n"
     #
-    # print "Market Return History:"
+    # print "return market trade History:"
     # print rapper.returnMarketTradeHistory("USDT_ETH")
     # print "\n"
     #
@@ -43,7 +43,9 @@ if __name__=="__main__":
     # print "Trade History"
     # print rapper.returnTradeHistory("USDT_ETH")
 
-    
+    print rapper.returnChartData("USDT_ETH", "1498132800", "1498219200", "1800")
+
+
 
 # #my methods
 #     print "Trade History: \n" + publicApiMethods.getTradeHistory("USDT_ETH") + "\n"

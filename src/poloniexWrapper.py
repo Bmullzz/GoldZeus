@@ -30,23 +30,26 @@ class poloniex:
     def api_query(self, command, req={}):
 
         if (command == "returnTicker" or command == "return24hVolume"):
-
             response = urllib2.urlopen(urllib2.Request('https://poloniex.com/public?command=' + command))
             # with open('tickerData.txt', 'w') as outfile:
             #     json.dumps(response, outfile)
             return json.loads(response.read())
 
         elif (command == "returnOrderBook"):
-
             response = urllib2.urlopen(urllib2.Request(
                 'https://poloniex.com/public?command=' + command + '&currencyPair=' + str(req['currencyPair'])))
             return json.loads(response.read())
 
         elif (command == "returnMarketTradeHistory"):
-
             response = urllib2.urlopen(urllib2.Request(
                 'https://poloniex.com/public?command=' + "returnTradeHistory" + '&currencyPair=' + str(
                     req['currencyPair'])))
+            return json.loads(response.read())
+
+        elif (command == "returnChartData"):
+            response = urllib2.urlopen(urllib2.Request(
+                'https://poloniex.com/public?command=' + command + '&currencyPair=' + str(req['currencyPair'])
+                + '&start=' + str(req['start']) + '&end=' + str(req['end']) + '&period=' + str(req['period'])))
             return json.loads(response.read())
 
         else:
@@ -79,6 +82,10 @@ class poloniex:
 
     def returnMarketTradeHistory(self, currencyPair):
         return self.api_query("returnMarketTradeHistory", {'currencyPair': currencyPair})
+
+
+    def returnChartData(self, currencyPair, start, end, period):
+        return self.api_query("returnChartData", {'currencyPair': currencyPair, 'start': start, 'end': end, 'period': period})
 
 
     # Returns all of your balances.
