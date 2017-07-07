@@ -1,34 +1,43 @@
 import requests
+import json
+import time
 
 
 apiKey = ''
 
-def apiQuery(command):
-    if command == "return24hVolume":
-        response = requests.get("https://poloniex.com/public?command=" + command, auth=(apiKey))
-        return response._content
+def createTimeStamp(dateString, format="%Y-%m-%d %H:%M:%S"):
+    return time.mktime(time.strptime(dateString, format))
+
+# def apiQuery(command):
+#     if command == "return24hVolume":
+#         response = requests.get("https://poloniex.com/public?command=" + command)
+#         data = response.json()
+#         return data
 
 
 def get24hVolume():
-    response = requests.get("https://poloniex.com/public?command=return24hVolume", auth=(apiKey))
-    return response._content
+    response = requests.get("https://poloniex.com/public?command=return24hVolume")
+    data = response.json()
+    return data
 
 
 def getTradeHistory(currencyPair):
     response = requests.get("https://poloniex.com/public?command=returnTradeHistory&currencyPair="
-                            + currencyPair, auth=(apiKey))
-    return response._content
+                            + currencyPair)
+    return response.content
 
 
 def getChartData(currencyPair, startTime, endTime, period):
     response = requests.get("https://poloniex.com/public?command=returnChartData&currencyPair=" +
                             currencyPair +
                             "&start=" + startTime +
-                            "&end=" + endTime + "&period=" + period, auth=(apiKey))
-    return response._content
+                            "&end=" + endTime + "&period=" + period)
+    return response.content
 
 
-def getOrderBook():
-    response = requests.get("https://poloniex.com/public?command=returnOrderBook&currencyPair=USDT_ETH", auth=(apiKey))
-    return response._content
+def getOrderBook(currencyPair):
+    response = requests.get("https://poloniex.com/public?command=returnOrderBook&currencyPair=" + currencyPair)
+    return response.content
 
+with open('24hVolumeData.txt', 'w') as outfile:
+    get24hVolume().dump(data, outfile)

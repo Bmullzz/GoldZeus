@@ -1,9 +1,7 @@
 import requests
 import publicApiMethods
 import privateApiMethods
-
-apiKey = ''
-secret = ''
+import json
 
 
 #def main():
@@ -21,13 +19,13 @@ secret = ''
 
 if __name__=="__main__":
 
-    print "24 hour Volume: \n" + publicApiMethods.get24hVolume() + "\n"
+    # print publicApiMethods.get24hVolume()
 
     print "Trade History: \n" + publicApiMethods.getTradeHistory("USDT_ETH") + "\n"
 
     print "24 hour chart data: \n" + publicApiMethods.getChartData("USDT_ETH", "1498132800", "1498219200", "1800") + "\n"
 
-    print "Order Book: \n" + publicApiMethods.getOrderBook() + "\n"
+    print "Order Book: \n" + publicApiMethods.getOrderBook("USDT_ETH") + "\n"
 
     print privateApiMethods.buy()
 
