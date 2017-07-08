@@ -1,6 +1,4 @@
 
-import publicApiMethods
-import privateApiMethods
 import poloniexWrapper
 import apiKeys
 import json
@@ -43,6 +41,7 @@ if __name__=="__main__":
     # print "Trade History"
     # print rapper.returnTradeHistory("USDT_ETH")
 
+    # print "Chart Data
     print rapper.returnChartData("USDT_ETH", "1498132800", "1498219200", "1800")
 
 
