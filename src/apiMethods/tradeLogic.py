@@ -1,7 +1,6 @@
 
-import poloniexWrapper
 import apiKeys
-import json
+import poloniexWrapper
 
 APIKey = apiKeys.APIKey
 Secret = apiKeys.Secret

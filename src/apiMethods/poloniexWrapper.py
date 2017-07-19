@@ -148,7 +148,7 @@ class poloniex:
     # currencyPair  The curreny pair
     # orderNumber   The order number to cancel
     # Outputs:
-    # succes        1 or 0
+    # success        1 or 0
     def cancel(self, currencyPair, orderNumber):
         return self.api_query('cancelOrder', {"currencyPair": currencyPair, "orderNumber": orderNumber})
 
